@@ -1,9 +1,6 @@
 cask "movamem" do
   version "1.0.0"
-  # Replaced on each release with the checksum printed by the release workflow.
-  # Until the first tag is pushed there is no asset to hash, so this is a
-  # placeholder and `brew install` will fail on mismatch by design.
-  sha256 "REPLACE_WITH_RELEASE_SHA256"
+  sha256 "03f5463288076469dec627198d4392f9003db873f72547b8d6b82926a7857bad"
 
   url "https://github.com/melnychenkoca/movaMem/releases/download/v#{version}/movaMem.zip"
   name "movaMem"
