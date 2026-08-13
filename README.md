@@ -7,23 +7,32 @@ keyboard layout memory for macOS.
 
 ```bash
 brew tap melnychenkoca/movamem
-brew install --cask --no-quarantine movamem
+brew trust --cask melnychenkoca/movamem/movamem
+brew install --cask movamem
+xattr -dr com.apple.quarantine /Applications/movaMem.app
 open /Applications/movaMem.app
 ```
 
-### Why `--no-quarantine`
+### Why the extra steps
 
 movaMem is built without an Apple Developer ID, so the release is ad-hoc signed
-rather than notarized. Homebrew quarantines cask downloads by default, and macOS
-refuses to launch a quarantined app that has no notarization ticket — reporting
-it as **"damaged and can't be opened"**. The app is not damaged; that is simply
-the message macOS uses.
+rather than notarized. Two separate gates stand in the way, and each step clears
+one of them.
 
-`--no-quarantine` skips applying the quarantine attribute, so the app launches
-normally.
+**`brew trust`** — Homebrew 5 will not load casks from third-party taps until you
+trust them explicitly. Without it the install stops before downloading anything.
+This is Homebrew's own gate, and has nothing to do with macOS.
 
-If you prefer to leave quarantine in place, install without the flag and approve
-the app once instead:
+**`xattr -dr com.apple.quarantine`** — Homebrew marks cask downloads with the
+quarantine attribute, and macOS refuses to launch a quarantined app that has no
+notarization ticket, reporting it as **"damaged and can't be opened"**. The app is
+not damaged; that is simply the message macOS uses.
+
+> This is what `brew install --cask --no-quarantine` used to do. That flag was
+> removed in Homebrew 5 and now fails with `invalid option: --no-quarantine`.
+
+If you prefer to leave the quarantine attribute in place, skip that step and
+approve the app once instead:
 
 1. Try to open movaMem and let macOS block it
 2. Open System Settings > Privacy & Security

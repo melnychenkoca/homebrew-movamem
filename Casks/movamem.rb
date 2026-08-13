@@ -22,11 +22,12 @@ cask "movamem" do
 
   caveats <<~EOS
     movaMem is ad-hoc signed rather than notarized, because it is built without
-    an Apple Developer ID. If you installed without `--no-quarantine`, macOS
-    will refuse to open it and report that it is "damaged". It is not damaged.
+    an Apple Developer ID. macOS will refuse to open it and report that it is
+    "damaged". It is not damaged — that is just the message macOS uses for a
+    quarantined app with no notarization ticket.
 
-    Either reinstall with:
-      brew install --cask --no-quarantine movamem
+    Clear the quarantine attribute:
+      xattr -dr com.apple.quarantine /Applications/movaMem.app
 
     Or approve it once in System Settings > Privacy & Security, using the
     "Open Anyway" button that appears after the first blocked launch.
