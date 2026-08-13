@@ -1,6 +1,6 @@
 cask "movamem" do
-  version "1.0.0"
-  sha256 "03f5463288076469dec627198d4392f9003db873f72547b8d6b82926a7857bad"
+  version "1.0.1"
+  sha256 "199b8e6ef253e1cead1eb5177d1161e6c9f44464c247664f0481d2c6477f2eeb"
 
   url "https://github.com/melnychenkoca/movaMem/releases/download/v#{version}/movaMem.zip"
   name "movaMem"
