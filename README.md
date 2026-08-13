@@ -59,3 +59,10 @@ brew uninstall --zap --cask movamem
 The tap ships a prebuilt universal binary. To compile it yourself, see the
 [main repository](https://github.com/melnychenkoca/movaMem) — it needs only the
 Command Line Tools, not full Xcode.
+
+## Maintenance
+
+`Casks/movamem.rb` is updated automatically. Tagging a release in the
+[main repository](https://github.com/melnychenkoca/movaMem) builds the universal
+app, publishes it, and pushes the new `version` and `sha256` here. Hand edits to
+those two stanzas will be overwritten by the next release.
